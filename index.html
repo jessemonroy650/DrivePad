@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>DrivePad Ui</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/buttons.css" />
+    <link rel="stylesheet" href="default.css" />
+    <link rel="stylesheet" href="app.css" />
+    <style></style>
+</head>
+<body>
+<div id=app-header class="button button-block button-large">
+    <img id=app-icon align=left src=images/favicon-48x48.png>
+    <span id=app-title>DrivePad Ui Test</span>
+    <button id=exitButton onclick='navigator.app.exitApp()' class="button button-pill button-primary button-large" style="margin:0.1em;float:right;">Exit</button>
+</div>
+
+<div id=content style="margin:1em;">
+    <div id=circle></div>
+    <div>isPointInCircle: <span id=results>false</span><br />touchend:<span id=touchend>false</span></div>
+    <div>click: x:<span id=x>x</span>,y:<span id=y>y</span></div>
+    <div>center: cx:<span id=cx>cx</span>,cy:<span id=cy>cy</span></div>
+</div>
+
+<div class="copyright" >
+    <span id=copyright>Created by Jesus Monroy, Jr. &copy; 2016</span>
+</div>
+<pre id=dbug_console>
+</pre>
+
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script type="text/javascript" charset="utf-8" src="drivepad.js"></script>
+<script type="text/javascript" charset="utf-8" src="app.js"></script>
+<script type="text/javascript"></script>
+
+</body>
+</html>
