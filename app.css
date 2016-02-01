@@ -1,7 +1,10 @@
 /* Specific to DrivePad. */
 #app-header {margin:0;padding:0;}
+#content {margin:1em;}
+#exitButton {margin:0.1em;float:right;}
 /* REMINDER: border-radius must always be half of height/width */
 #circle {
+    margin:auto;
     height:280px;width:280px;border-radius:140px;
     background-color:#2222ee;
 }
