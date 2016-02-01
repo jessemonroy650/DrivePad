@@ -13,6 +13,7 @@ var app = {
     //
     onDeviceReady : function () {
         //alert("device ready.");
+        console.log("device ready.");
         if (device.platform === "iOS") {
             // hide Exit button. They don't have one on iOS devices.
             document.getElementById('exitApp').classList.add("hidden");
@@ -30,8 +31,11 @@ var app = {
                 app.exit();
             });
         }
+        console.log("app init");
         app.init();
+        console.log("drivePad init");
         drivePad.init('touch', myCircle, myContent, app.handleDrivePad);
+        console.log("done with deviceReady");
     },
     //
     exit : function () {
