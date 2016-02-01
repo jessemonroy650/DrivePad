@@ -7,13 +7,17 @@
     var myCY = null;
     var myTE = null;
     var myConsole = null;
+    var drFired =  false;
 
 var app = {
     self : {},
     //
     onDeviceReady : function () {
         //alert("device ready.");
+        // Setup debug console
+        myConsole = document.getElementById("dbug_console");
         console.log("device ready.");
+        drFired = true;
         if (device.platform === "iOS") {
             // hide Exit button. They don't have one on iOS devices.
             document.getElementById('exitApp').classList.add("hidden");
@@ -53,7 +57,6 @@ var app = {
         myCX = document.getElementById("cx");
         myCY = document.getElementById("cy");
         myTE = document.getElementById("touchend");
-        myConsole = document.getElementById("dbug_console");
         //
         myCX.innerHTML = drivePad.cx;
         myCY.innerHTML = drivePad.cy;
@@ -67,7 +70,14 @@ var app = {
         console.log(r);
     }
 };
-//
+
+
 // Wait for PhoneGap to load
 document.addEventListener("deviceready", app.onDeviceReady, false);
 //
+setTimeout(function() {
+    if (! drFired ) {
+        app.onDeviceReady();
+    }
+}, 5000);
+
