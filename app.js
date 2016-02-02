@@ -12,10 +12,13 @@
 var app = {
     self : {},
     //
-    onDeviceReady : function () {
+    onDeviceReady : function (flag) {
         //alert("device ready.");
         // Setup debug console
         myConsole = document.getElementById("dbug_console");
+        if (flag === true) {
+            console.log("timeout occured.");
+        }
         console.log("device ready.");
         drFired = true;
         if (device.platform === "iOS") {
@@ -77,13 +80,11 @@ var app = {
 var device = {'platform':'browser'};
 
 // Wait for PhoneGap to load
-//document.addEventListener("deviceready", app.onDeviceReady, false);
+document.addEventListener("deviceready", app.onDeviceReady, false);
 //
-/*
+
 setTimeout(function() {
     if (! drFired ) {
-        app.onDeviceReady();
+        app.onDeviceReady(true);
     }
 }, 5000);
-
-*/

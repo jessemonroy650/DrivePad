@@ -22,4 +22,4 @@ console.log = function() {
 	}
 	myConsole.innerHTML = theArgs + "\n" + myConsole.innerHTML;
 };
-window.console = console;
+//window.console = console;
