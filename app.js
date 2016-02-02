@@ -34,6 +34,9 @@ var app = {
             document.getElementById('exitApp').addEventListener('click', function() {
                 app.exit();
             });
+        } else if (device.platform === "browser") {
+            // hide Exit button. They don't have one with the webbrowser.
+            document.getElementById('exitApp').classList.add("hidden");
         }
         console.log("app init");
         app.init();
@@ -71,13 +74,16 @@ var app = {
     }
 };
 
+var device = {'platform':'browser'};
 
 // Wait for PhoneGap to load
 document.addEventListener("deviceready", app.onDeviceReady, false);
 //
+/*
 setTimeout(function() {
     if (! drFired ) {
         app.onDeviceReady();
     }
 }, 5000);
 
+*/
