@@ -13,14 +13,15 @@ var app = {
     self : {},
     //
     onDeviceReady : function (flag) {
+        drFired = true;
         //alert("device ready.");
         // Setup debug console
         myConsole = document.getElementById("dbug_console");
         if (flag === true) {
-            console.log("timeout occured.");
+            consolex = console;
+            consolex.log("timeout occured.");
         }
-        console.log("device ready.");
-        drFired = true;
+        consolex.log("device ready.");
         if (device.platform === "iOS") {
             // hide Exit button. They don't have one on iOS devices.
             document.getElementById('exitApp').classList.add("hidden");
@@ -41,15 +42,15 @@ var app = {
             // hide Exit button. They don't have one with the webbrowser.
             document.getElementById('exitApp').classList.add("hidden");
         }
-        console.log("app init");
+        consolex.log("app init");
         app.init();
-        console.log("drivePad init");
+        consolex.log("drivePad init");
         drivePad.init('touch', myCircle, myContent, app.handleDrivePad);
-        console.log("done with deviceReady");
+        consolex.log("done with deviceReady");
     },
     //
     exit : function () {
-        console.log('Called app.exit()');
+        consolex.log('Called app.exit()');
         navigator.app.exitApp();
     },
     //
@@ -73,7 +74,7 @@ var app = {
         myX.innerHTML       = r.x;
         myY.innerHTML       = r.y;
         myTE.innerHTML      = r.end;
-        console.log(r);
+        consolex.log(r);
     }
 };
 
@@ -87,4 +88,4 @@ setTimeout(function() {
     if (! drFired ) {
         app.onDeviceReady(true);
     }
-}, 5000);
+}, 2000);
