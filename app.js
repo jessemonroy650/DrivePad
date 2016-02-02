@@ -74,7 +74,7 @@ var app = {
     }
 };
 
-// var device = {'platform':'browser'};
+var device = {'platform':'browser'};
 
 // Wait for PhoneGap to load
 //document.addEventListener("deviceready", app.onDeviceReady, false);
