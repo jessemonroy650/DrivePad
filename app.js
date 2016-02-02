@@ -82,9 +82,10 @@ var device = {'platform':'browser'};
 // Wait for PhoneGap to load
 document.addEventListener("deviceready", app.onDeviceReady, false);
 //
-
+/*
 setTimeout(function() {
     if (! drFired ) {
         app.onDeviceReady(true);
     }
 }, 5000);
+*/
