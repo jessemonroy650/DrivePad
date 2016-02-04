@@ -44,12 +44,10 @@ var app = {
         }
         consolex.log("app init");
         app.init();
-        consolex.log("drivePad init touch");
-        drivePad.init('touch', myCircle, myContent, app.handleDrivePad);
-        consolex.log("drivePad init click (mouse)");
-        drivePad.init('click', myCircle, myContent, app.handleDrivePad);
+        consolex.log("driveIt init");
+        driveIt.init('firebase', myCircle, myContent, app.handleDrivePad);
         consolex.log("myFirebase init");
-        myFirebase.init("https://bot-drive.firebaseio.com/drive");
+        myFirebase.init("https://bot-drive.firebaseio.com/drive", app.followInput);
         consolex.log("done with deviceReady");
     },
     //
@@ -69,14 +67,21 @@ var app = {
         myCY = document.getElementById("cy");
         myTE = document.getElementById("touchend");
         //
-        myCX.innerHTML = drivePad.cx;
-        myCY.innerHTML = drivePad.cy;
+        myCX.innerHTML = 0;
+        myCY.innerHTML = 0;
     },
+    //
+    handleDrivePad : function(r) {
+        myResults.innerHTML = r.inside;
+        myX.innerHTML       = r.x;
+        myY.innerHTML       = r.y;
+        myTE.innerHTML      = r.end;
+        consolex.log(r);
+    },
+    //
     followInput : function(e) {
         //consolex.log(e); return;
         var r;
-        // XXX hack hack hack
-        var driveIt = drivePad;
         consolex.log('#circle', e.pageX, e.pageY, driveIt.cx, driveIt.cy, driveIt.radius);
         r = driveIt.isPointInCircle(e.pageX, e.pageY, driveIt.cx, driveIt.cy, driveIt.radius);
         consolex.log(r);
@@ -87,19 +92,6 @@ var app = {
         consolex.log('leftPadding:' + leftPadding, 'touchRadius:' + touchRadius );
         $('#spotTouched').css('left', (e.pageX - leftPadding - touchRadius) + 'px' );
         $('#spotTouched').css('top', (e.pageY - topPadding - touchRadius) + 'px' );
-    },
-    //
-    handleDrivePad : function(r) {
-        myResults.innerHTML = r.inside;
-        myX.innerHTML       = r.x;
-        myY.innerHTML       = r.y;
-        myTE.innerHTML      = r.end;
-        consolex.log(r);
-        app.followInput({'pageX': r.x, 'pageY': r.y});
-        app.broadcastTrail({'pageX': r.x, 'pageY': r.y});
-    },
-    broadcastTrail : function(r) {
-        myFirebase.broadcastTrail(r);
     }
 };
 
