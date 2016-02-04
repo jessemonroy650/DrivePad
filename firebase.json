@@ -1,0 +1,12 @@
+{
+  "firebase": "bot-drive",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**",
+    "fblistener/",
+    ".gitignore",
+    ".pgbomit"
+  ]
+}
