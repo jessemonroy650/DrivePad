@@ -29,6 +29,7 @@ var theArgs = "";
 // http://stackoverflow.com/questions/4116608/pass-unknown-number-of-arguments-into-javascript-function
 consolex.log = function() {
 	theArgs = "";
+    return;
 	for (var i = 0; i < arguments.length; i++) {
 		 theArgs = theArgs + JSON.stringify(arguments[i]) + ',' ;
 	}
