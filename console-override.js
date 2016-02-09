@@ -34,4 +34,3 @@ consolex.log = function() {
 	}
 	myConsole.innerHTML = theArgs + "\n" + myConsole.innerHTML;
 };
-

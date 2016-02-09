@@ -4,7 +4,7 @@
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.bsdmasterindex.drivepad-test"
         version     = "0.8.1"
-        versionCode = "101" > <!-- versionCode is optional and Android only -->
+        versionCode = "34" > <!-- versionCode is optional and Android only -->
         <!-- Tool Set Version -->        
         <!-- <preference name='phonegap-version' value='cli-5.2.0' /> -->
         <!-- Testing the system -->
