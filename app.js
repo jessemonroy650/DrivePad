@@ -92,17 +92,19 @@ var app = {
     handleDrivePad : function(r) {
         var rndx = Math.round(r.pageX);
         var rndy = Math.round(r.pageY);
+        var rbx  = Math.round(r.bx);
+        var rby  = Math.round(r.by);
         myX.innerHTML       = rndx;
         myY.innerHTML       = rndy;
         myResults.innerHTML = r.inside;
         myTE.innerHTML      = r.end;
         myRX.innerHTML      = r.rx;
         myRY.innerHTML      = r.ry;
-        myBX.innerHTML      = r.bx;
-        myBY.innerHTML      = r.by;
+        myBX.innerHTML      = rbx;
+        myBY.innerHTML      = rby;
         consolex.log("r:" + JSON.stringify(r));
         app.followInput({'pageX': rndx, 'pageY': rndy});
-        setTimeout( function () {app.broadcastTrail({'x': r.bx, 'y': r.by}); }, 200);
+        setTimeout( function () {app.broadcastTrail({'x': rbx, 'y': rby}); }, 200);
     },
     remoteSays : function (r) {
         consolex.log("remoteSays:" + JSON.stringify(r));
