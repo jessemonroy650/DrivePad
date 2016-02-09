@@ -1,0 +1,14 @@
+#popup {
+	background-color:#eeeeee;
+	border:1px black solid;
+	border-radius: 0.5em;
+	height:200px;width:280px;margin:0 20px;padding:0.5em;
+	/* position related */
+	position:absolute;
+	left:0;
+	top:50px;
+	opacity: 1;          /* fade in and out */
+    display: block;      /* element visible or not visible */
+	visibility: visible; /* WITH THIS (property) WHAT IS UNDERNEATH IS BLOCKED */
+	transition: opacity 1s ease;
+}

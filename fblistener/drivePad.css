@@ -1,0 +1,27 @@
+/* REMINDER: border-radius must always be half of height/width */
+#circle {
+    position: relative; /* Required, else the other two elements don't position correctly */
+    margin:auto;
+    height:280px;width:280px;border-radius:140px;
+    background-color:#2222ee;
+}
+
+#spotTouched {
+    position: absolute;
+    /* transition: top left 1s; */
+    transition: all 1s;
+    top:130px;
+    left:130px;
+    height:20px;width:20px;border-radius:10px;
+    background-color:#d0d0d0;
+}
+
+#dotAfter {
+    position: absolute;
+    /* transition: top left 1s; */
+    transition: all 1s;
+    top:135px;
+    left:135px;
+    height:10px;width:10px;border-radius:5px;
+    background-color:#ff0000;
+}
