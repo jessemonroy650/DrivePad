@@ -2,19 +2,3 @@
 #app-header {margin:0;padding:0;}
 #content {margin:1em;}
 #exitButton {margin:0.1em;float:right;}
-/* REMINDER: border-radius must always be half of height/width */
-#circle {
-    margin:auto;
-    height:280px;width:280px;border-radius:140px;
-    background-color:#2222ee;
-}
-
-#spotTouched {
-    position: relative;
-    /* transition: top left 1s; */
-    transition: all 1s;
-    top:130px;
-    left:130px;
-    height:20px;width:20px;border-radius:10px;
-    background-color:#d0d0d0;
-}

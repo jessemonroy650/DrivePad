@@ -16,7 +16,10 @@ var myFirebase = {
         }
     },
     broadcastTrail : function (packet) {
-        consolex.log(packet);
-        myFirebaseRef.push(packet);
+        consolex.log('broadcastTrail:',packet);
+        // This 'if' allows us to disable this function by commenting out myFirebase.init()
+        if (typeof myFirebaseRef.push === 'function') {
+            myFirebaseRef.push(packet);
+        }
     }
 };

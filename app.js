@@ -1,10 +1,17 @@
 //
-var myCircle = null;
+var myCircle  = null;
+var myContent = null;
 var myResults = null;
 var myX = null;
 var myY = null;
+var myRX = null;
+var myRY = null;
+var myBX = null;
+var myBY = null;
 var myCX = null;
 var myCY = null;
+var myEX = null;
+var myEY = null;
 var myTE = null;
 var myConsole = null;
 var drFired =  false;
@@ -48,9 +55,15 @@ var app = {
         drivePad.init('touch', myCircle, myContent, app.handleDrivePad);
         consolex.log("drivePad init click (mouse)");
         drivePad.init('click', myCircle, myContent, app.handleDrivePad);
-        consolex.log("myFirebase init");
-        myFirebase.init("https://bot-drive.firebaseio.com/drive");
+        myCX.innerHTML = Math.round(drivePad.cx);
+        myCY.innerHTML = Math.round(drivePad.cy);
+        myEX.innerHTML = Math.round(drivePad.boundLeft);
+        myEY.innerHTML = Math.round(drivePad.boundTop);
+        //
+        //consolex.log("myFirebase init");
+        myFirebase.init("https://bot-drive.firebaseio.com/drive", app.remoteSays);
         consolex.log("done with deviceReady");
+        togglePopup();
     },
     //
     exit : function () {
@@ -65,39 +78,62 @@ var app = {
         myContent = document.getElementById("content");
         myX = document.getElementById("x");
         myY = document.getElementById("y");
+        myRX = document.getElementById("rx");
+        myRY = document.getElementById("ry");
+        myBX = document.getElementById("bx");
+        myBY = document.getElementById("by");
         myCX = document.getElementById("cx");
         myCY = document.getElementById("cy");
+        myEX = document.getElementById("ex");
+        myEY = document.getElementById("ey");
         myTE = document.getElementById("touchend");
-        //
-        myCX.innerHTML = drivePad.cx;
-        myCY.innerHTML = drivePad.cy;
-    },
-    followInput : function(e) {
-        //consolex.log(e); return;
-        var r;
-        // XXX hack hack hack
-        var driveIt = drivePad;
-        consolex.log('#circle', e.pageX, e.pageY, driveIt.cx, driveIt.cy, driveIt.radius);
-        r = driveIt.isPointInCircle(e.pageX, e.pageY, driveIt.cx, driveIt.cy, driveIt.radius);
-        consolex.log(r);
-        $('#results').html(r);
-        var leftPadding = driveIt.cx - driveIt.radius;
-        var topPadding  = driveIt.cy - driveIt.radius;
-        var touchRadius = parseInt($('#spotTouched').css('width')) / 2;
-        consolex.log('leftPadding:' + leftPadding, 'touchRadius:' + touchRadius );
-        $('#spotTouched').css('left', (e.pageX - leftPadding - touchRadius) + 'px' );
-        $('#spotTouched').css('top', (e.pageY - topPadding - touchRadius) + 'px' );
     },
     //
     handleDrivePad : function(r) {
+        var rndx = Math.round(r.pageX);
+        var rndy = Math.round(r.pageY);
+        myX.innerHTML       = rndx;
+        myY.innerHTML       = rndy;
         myResults.innerHTML = r.inside;
-        myX.innerHTML       = r.x;
-        myY.innerHTML       = r.y;
         myTE.innerHTML      = r.end;
-        consolex.log(r);
-        app.followInput({'pageX': r.x, 'pageY': r.y});
-        app.broadcastTrail({'pageX': r.x, 'pageY': r.y});
+        myRX.innerHTML      = r.rx;
+        myRY.innerHTML      = r.ry;
+        myBX.innerHTML      = r.bx;
+        myBY.innerHTML      = r.by;
+        consolex.log("r:" + JSON.stringify(r));
+        app.followInput({'pageX': rndx, 'pageY': rndy});
+        setTimeout( function () {app.broadcastTrail({'x': r.bx, 'y': r.by}); }, 200);
     },
+    remoteSays : function (r) {
+        consolex.log("remoteSays:" + JSON.stringify(r));
+/*
+        var leftPadding = drivePad.cx - drivePad.radius;
+        var topPadding  = drivePad.cy - drivePad.radius;
+        var touchRadius = parseInt($('#dotAfter').css('width')) / 2;
+*/
+        var touchRadius = parseInt($('#dotAfter').css('width')) / 2;
+        var x = r.x - touchRadius;
+        var y = r.y - touchRadius;
+        consolex.log("after:x,y:",x,y);
+        $('#dotAfter').css('left', x + 'px' );
+        $('#dotAfter').css('top', y + 'px' );
+    },
+    //
+    followInput : function(e) {
+        //consolex.log(e); return;
+        var r = drivePad.isPointInCircle(e.pageX, e.pageY, drivePad.cx, drivePad.cy, drivePad.radius);
+        $('#results').html(r);
+        var leftPadding = drivePad.cx - drivePad.radius;
+        var topPadding  = drivePad.cy - drivePad.radius;
+        var touchRadius = parseInt($('#spotTouched').css('width')) / 2;
+        //
+        var x = e.pageX - leftPadding - touchRadius;
+        var y = e.pageY - topPadding - touchRadius;
+        console.log('touch:left,top:', x,y);
+        $('#spotTouched').css('left', x + 'px' );
+        $('#spotTouched').css('top', y + 'px' );
+    },
+    //
     broadcastTrail : function(r) {
         myFirebase.broadcastTrail(r);
     }

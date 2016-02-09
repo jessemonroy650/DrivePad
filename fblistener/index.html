@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/buttons.css" />
+    <link rel="stylesheet" href="popup/popup.css" />
+    <link rel="stylesheet" href="drivePad.css" />
     <link rel="stylesheet" href="default.css" />
     <link rel="stylesheet" href="app.css" />
     <style></style>
@@ -17,16 +19,18 @@
 </div>
 
 <div id=content>
-    <div id=circle><div id=spotTouched></div></div>
+    <div id=circle><div id=spotTouched></div><div id=dotAfter></div></div>
+    <div>center: cx:<span id=cx>cx</span>,cy:<span id=cy>cy</span></div>
     <div>isPointInCircle: <span id=results>false</span><br />touchend:<span id=touchend>false</span></div>
     <div>click: x:<span id=x>x</span>,y:<span id=y>y</span></div>
-    <div>center: cx:<span id=cx>cx</span>,cy:<span id=cy>cy</span></div>
+    <div>bound: x:<span id=bx>x</span>,y:<span id=by>y</span></div>
+    <div>relative: x:<span id=rx>x</span>,y:<span id=ry>y</span></div>
+    <div>edge: x:<span id=ex>x</span>,y:<span id=ey>y</span></div>
 </div>
 
-<button id=left20  class="button button-pill button-primary">Left 20</button>
-<button id=right20 class="button button-pill button-primary">right 20</button>
-<button id=up20    class="button button-pill button-primary">up 20</button>
-<button id=down20  class="button button-pill button-primary">down 20</button>
+<!-- This after `id=circle` because `id=circle` is positioned and otherwise this lays under it -->
+<div id=popup>This messages fades once the device to be ready.</div>
+<!-- <div id=popup>This is a popup message goes away after <span id=timeouttime></span> seconds.</div> -->
 
 <pre id=dbug_console>
 </pre>
@@ -35,15 +39,18 @@
     <span id=copyright>Created by Jesus Monroy, Jr. &copy; 2016</span>
 </div>
 
-<script type="text/javascript" charset="utf-8" src="zepto-1.1.6.js"></script>
-<script type="text/javascript" charset="utf-8" src="firebase-2.4.0.js"></script>
-<script type="text/javascript" charset="utf-8" src="buttons.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/zepto-1.1.6.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/firebase-2.4.0.js"></script>
+<script type="text/javascript" charset="utf-8" src="popup/popup.js"></script>
+<script type="text/javascript" charset="utf-8" src="firebase-talk.js"></script>
 <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-<script type="text/javascript" charset="utf-8" src="driveIt.js"></script>
+<script type="text/javascript" charset="utf-8" src="drivePad.js"></script>
 <script type="text/javascript" charset="utf-8" src="console-override.js"></script>
-<script type="text/javascript" charset="utf-8" src="firebase-listen.js"></script>
 <script type="text/javascript" charset="utf-8" src="app.js"></script>
-<script type="text/javascript"></script>
+<script type="text/javascript">
+//var device = {'platform':'browser'};
+//document.addEventListener("deviceready", app.onDeviceReady, false);
+</script>
 
 </body>
 </html>
